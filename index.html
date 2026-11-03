@@ -20,7 +20,7 @@ section{padding:80px 0;border-top:1px solid #ffffff12}.center{text-align:center}
 .timeline{display:grid;gap:12px;max-width:720px;margin:auto}.milestone{display:flex;gap:16px;align-items:flex-start;padding:18px;border-radius:16px;background:#ffffff08;border:1px solid #ffffff12}.icon{font-size:1.6rem}.milestone p{margin:4px 0 0;color:var(--muted)}
 .countdown{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:25px 0}.unit{min-width:80px;padding:15px 12px;border-radius:15px;background:#ffffff0a;border:1px solid #ffffff16}.num{font-size:2rem;font-weight:900;display:block;color:#fff}.unit small{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem}
 .secret{display:none;margin-top:25px;animation:rise .6s ease}.secret.show{display:block}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:#ff5555}.musicrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}
+footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:#ff5555}.musicrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}.music-player{width:min(720px,100%);margin:24px auto 18px;aspect-ratio:16/9;overflow:hidden;border:1px solid #ffffff2a;border-radius:18px;background:#000;box-shadow:0 18px 55px #0008}.music-player iframe{display:block;width:100%;height:100%;border:0}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -47,7 +47,8 @@ footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:
 <figure class="photo"><img src="fotos/recuerdo_4.jpeg" alt="Recuerdo de nosotros" loading="lazy"><figcaption>Risas, abrazos y recuerdos nuestros 🥰</figcaption></figure>
 <figure class="photo"><img src="fotos/recuerdo_5.jpeg" alt="Recuerdo de nosotros" loading="lazy"><figcaption>Descubriendo el mundo de la mano contigo 🌎</figcaption></figure>
 <figure class="photo"><img src="fotos/recuerdo_6.jpeg" alt="Recuerdo de nosotros" loading="lazy"><figcaption>Otra vuelta alrededor del sol, juntos 🏁</figcaption></figure>
-<figure class="photo"><img src="fotos/recuerdo_7.jpeg" alt="Recuerdo de nosotros" loading="lazy"><figcaption>Mi persona favorita, en mis días favoritos 💋</figcaption></figure></div>
+<figure class="photo"><img src="fotos/recuerdo_7.jpeg" alt="Recuerdo de nosotros" loading="lazy"><figcaption>Mi persona favorita, en mis días favoritos 💋</figcaption></figure>
+<figure class="photo"><img src="fotos/recuerdo_8.jpeg" alt="Un día feliz juntos en el mar" loading="lazy"><figcaption>Un pedacito de paraíso, y mi lugar favorito es a tu lado 🌊❤️</figcaption></figure></div>
 </div></section>
 <section><div class="wrap">
  <div class="center"><div class="eyebrow">Capítulo 02 · Mensaje del equipo</div><h2>Una carta para ti 💌</h2><p class="intro">No hay trofeo que pueda decir mejor lo que significas para mí.</p></div>
@@ -70,12 +71,14 @@ Te elegiría como compañero de equipo una y otra vez. En esta carrera, mi podio
 <section><div class="wrap center">
  <div class="eyebrow">Capítulo 03 · Nuestra banda sonora</div><h2>You're my universe ✨</h2>
  <p class="intro">Hay canciones que parecen encontrar las palabras que a veces nos cuesta decir. Esta es nuestra invitación a escuchar juntos nuestra canción especial.</p>
- <div class="musicrow"><a class="btn" href="https://www.youtube.com/results?search_query=Coldplay+BTS+My+Universe+official" target="_blank" rel="noopener">▶ ESCUCHAR “MY UNIVERSE”</a></div>
- <p class="small">La canción se abrirá en YouTube. Pulsa reproducir para que suene mientras recorres la página. ❤️</p>
+ <div class="music-player" aria-label="Reproductor de My Universe">
+  <iframe src="https://www.youtube-nocookie.com/embed/3YqPKLZF_WU?playsinline=1&rel=0" title="Coldplay x BTS - My Universe (Official Video)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+ </div>
+ <p class="small">Pulsa reproducir aquí mismo para escuchar nuestra canción mientras recorres la página. ❤️</p>
 </div></section>
 <section><div class="wrap center">
  <div class="eyebrow">Capítulo 04 · Próxima salida</div><h2>La cuenta regresiva 🏁</h2>
- <p class="intro">Cada segundo nos acerca a una nueva vuelta alrededor del sol. El contador apunta al 23 de noviembre de 2026 a las 3:00 p. m. (hora de El Salvador), inicio previsto de nuestra celebración. Puedes cambiar la fecha en el código si tus planes cambian.</p>
+ <p class="intro">Cada segundo nos acerca a nuestra próxima aventura, mi amor. ❤️</p>
  <div class="countdown" id="countdown"><div class="unit"><span class="num">--</span><small>Días</small></div><div class="unit"><span class="num">--</span><small>Horas</small></div><div class="unit"><span class="num">--</span><small>Minutos</small></div><div class="unit"><span class="num">--</span><small>Segundos</small></div></div>
  <p id="countText" class="small">Preparando motores…</p>
 </div></section>
