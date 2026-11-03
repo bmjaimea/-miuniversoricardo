@@ -19,7 +19,7 @@ section{padding:80px 0;border-top:1px solid #ffffff12}.center{text-align:center}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px}.photo{margin:0;background:#15151b;border-radius:18px;overflow:hidden;border:1px solid #ffffff16}.photo img{display:block;width:100%;height:290px;object-fit:cover}.photo figcaption{padding:13px 15px;color:#d8d2d9;font-size:.9rem}
 .timeline{display:grid;gap:12px;max-width:720px;margin:auto}.milestone{display:flex;gap:16px;align-items:flex-start;padding:18px;border-radius:16px;background:#ffffff08;border:1px solid #ffffff12}.icon{font-size:1.6rem}.milestone p{margin:4px 0 0;color:var(--muted)}
 .countdown{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:25px 0}.unit{min-width:80px;padding:15px 12px;border-radius:15px;background:#ffffff0a;border:1px solid #ffffff16}.num{font-size:2rem;font-weight:900;display:block;color:#fff}.unit small{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem}
-.secret{display:none;margin-top:25px;animation:rise .6s ease}.secret.show{display:block}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.secret{display:none;margin-top:25px;animation:rise .6s ease}.locked-note{max-width:720px;margin:24px auto;padding:28px;border:1px solid #ffffff22;border-radius:22px;background:linear-gradient(145deg,#19151b,#101015);text-align:center}.locked-note .lock-icon{font-size:2.8rem}.locked-note p{color:var(--muted)}.adventure-card{max-width:720px;margin:28px auto;padding:30px;border-radius:24px;border:1px solid #e1060055;background:linear-gradient(145deg,#241015,#111016);box-shadow:0 18px 55px #0005}.adventure-date{font-size:clamp(1.4rem,4vw,2rem);font-weight:900;color:#fff;margin:10px 0}.secret.show{display:block}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:#ff5555}.musicrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}.music-player{width:min(720px,100%);margin:24px auto 18px;aspect-ratio:16/9;overflow:hidden;border:1px solid #ffffff2a;border-radius:18px;background:#000;box-shadow:0 18px 55px #0008}.music-player iframe{display:block;width:100%;height:100%;border:0}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;animation:none!important;transition:none!important}}
 </style>
@@ -52,7 +52,13 @@ footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:
 </div></section>
 <section><div class="wrap">
  <div class="center"><div class="eyebrow">Capítulo 02 · Mensaje del equipo</div><h2>Una carta para ti 💌</h2><p class="intro">No hay trofeo que pueda decir mejor lo que significas para mí.</p></div>
- <article class="card letter">Mi amor,
+ <div class="locked-note" id="letterLock">
+  <div class="lock-icon">🔒💌</div>
+  <h2>Esta carta tiene una fecha especial</h2>
+  <p>Quiero que la leas en el momento indicado. Se abrirá el <strong>23 de noviembre de 2026 a las 3:00 p. m.</strong>, cuando comience oficialmente tu cumpleaños.</p>
+  <p id="lockCountdown" class="small">La sorpresa está esperando su momento… ❤️</p>
+ </div>
+ <article class="card letter" id="birthdayLetter" hidden>Mi amor,
 
 Hoy celebro tu vida, pero también celebro la suerte de coincidir contigo y de poder compartir tantas pequeñas y grandes aventuras a tu lado.
 
@@ -76,9 +82,17 @@ Te elegiría como compañero de equipo una y otra vez. En esta carrera, mi podio
  </div>
  <p class="small">Pulsa reproducir aquí mismo para escuchar nuestra canción mientras recorres la página. ❤️</p>
 </div></section>
+<section id="nueva-aventura"><div class="wrap center">
+ <div class="eyebrow">Capítulo 04 · Próxima aventura</div><h2>Una nueva aventura nos espera… 🏁</h2>
+ <div class="adventure-card">
+  <div style="font-size:2.5rem">🏎️❤️</div>
+  <p class="adventure-date">22 de noviembre · 3:00 p. m.</p>
+  <p class="intro" style="margin-bottom:0">Prepárate, mi amor. Tenemos una cita y una nueva aventura nos espera. Así comienza nuestra celebración de tu cumpleaños. ✨</p>
+ </div>
+</div></section>
 <section><div class="wrap center">
- <div class="eyebrow">Capítulo 04 · Próxima salida</div><h2>La cuenta regresiva 🏁</h2>
- <p class="intro">Cada segundo nos acerca a nuestra próxima aventura, mi amor. ❤️</p>
+ <div class="eyebrow">Capítulo 05 · Cuenta regresiva</div><h2>La cuenta regresiva de tu cumpleaños 🏁</h2>
+ <p class="intro">Cada segundo nos acerca al momento de celebrar tu vida, mi amor. ❤️</p>
  <div class="countdown" id="countdown"><div class="unit"><span class="num">--</span><small>Días</small></div><div class="unit"><span class="num">--</span><small>Horas</small></div><div class="unit"><span class="num">--</span><small>Minutos</small></div><div class="unit"><span class="num">--</span><small>Segundos</small></div></div>
  <p id="countText" class="small">Preparando motores…</p>
 </div></section>
@@ -95,11 +109,17 @@ Te elegiría como compañero de equipo una y otra vez. En esta carrera, mi podio
 <footer><div class="heart">♥ ♥ ♥</div><p>Hecho con amor, especialmente para Ricardo.</p><p class="small">Mi universo favorito siempre será el que comparto contigo.</p></footer>
 <script>
 const target = new Date('2026-11-23T15:00:00-06:00').getTime();
+const letterUnlock = new Date('2026-11-23T07:00:00-06:00').getTime();
+function updateLetterLock(){const locked=Date.now()<letterUnlock;const note=document.getElementById('letterLock');const letter=document.getElementById('birthdayLetter');if(locked){note.style.display='block';letter.hidden=true;}else{note.style.display='none';letter.hidden=false;}}
+updateLetterLock();setInterval(updateLetterLock,1000);
 function tick(){const now=Date.now(),diff=target-now;const el=document.getElementById('countdown');if(diff<=0){document.getElementById('countText').textContent='¡Llegó el momento de nuestra aventura! 🏁❤️';el.innerHTML='<div class="unit"><span class="num">🏁</span><small>¡Green flag!</small></div>';return}
 const vals=[Math.floor(diff/86400000),Math.floor(diff%86400000/3600000),Math.floor(diff%3600000/60000),Math.floor(diff%60000/1000)];
 el.querySelectorAll('.num').forEach((n,i)=>n.textContent=String(vals[i]).padStart(2,'0'));
 document.getElementById('countText').textContent='Motores encendidos… cada segundo nos acerca. ❤️'}
 tick();setInterval(tick,1000);
+const lockCountdown=document.getElementById('lockCountdown');
+function updateLockCountdown(){const diff=letterUnlock-Date.now();if(diff<=0){lockCountdown.textContent='¡Llegó el momento! Tu carta ya está lista para ti. ❤️';return;}const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000);lockCountdown.textContent=`Faltan ${d} días, ${h} horas y ${m} minutos para abrir tu carta. 🔐`; }
+updateLockCountdown();setInterval(updateLockCountdown,60000);
 document.getElementById('revealBtn').addEventListener('click',()=>{document.getElementById('secret').classList.add('show');document.getElementById('revealBtn').textContent='SORPRESA DESCUBIERTA ❤️';document.getElementById('secret').scrollIntoView({behavior:'smooth',block:'center'})});
 </script>
 </body></html>
