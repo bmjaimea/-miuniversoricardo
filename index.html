@@ -20,7 +20,17 @@ section{padding:80px 0;border-top:1px solid #ffffff12}.center{text-align:center}
 .timeline{display:grid;gap:12px;max-width:720px;margin:auto}.milestone{display:flex;gap:16px;align-items:flex-start;padding:18px;border-radius:16px;background:#ffffff08;border:1px solid #ffffff12}.icon{font-size:1.6rem}.milestone p{margin:4px 0 0;color:var(--muted)}
 .countdown{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:25px 0}.unit{min-width:80px;padding:15px 12px;border-radius:15px;background:#ffffff0a;border:1px solid #ffffff16}.num{font-size:2rem;font-weight:900;display:block;color:#fff}.unit small{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem}
 .secret{display:none;margin-top:25px;animation:rise .6s ease}.locked-note{max-width:720px;margin:24px auto;padding:28px;border:1px solid #ffffff22;border-radius:22px;background:linear-gradient(145deg,#19151b,#101015);text-align:center}.locked-note .lock-icon{font-size:2.8rem}.locked-note p{color:var(--muted)}.adventure-card{max-width:720px;margin:28px auto;padding:30px;border-radius:24px;border:1px solid #e1060055;background:linear-gradient(145deg,#241015,#111016);box-shadow:0 18px 55px #0005}.adventure-date{font-size:clamp(1.4rem,4vw,2rem);font-weight:900;color:#fff;margin:10px 0}.secret.show{display:block}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:#ff5555}.musicrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}.music-player{width:min(420px,100%);height:80px;margin:22px auto 12px;overflow:hidden;border-radius:14px;box-shadow:0 10px 30px #0006}.music-player iframe{display:block;width:100%;height:80px;border:0}
+footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:#ff5555}.musicrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}.music-player{width:min(420px,100%);min-height:88px;margin:22px auto 12px;overflow:hidden;border-radius:18px;background:#202024;border:1px solid #ffffff12;box-shadow:0 10px 30px #0006;text-align:left}
+.music-card{display:flex;align-items:center;gap:13px;padding:10px 12px;min-height:88px}
+.music-cover{width:104px;height:66px;flex:0 0 104px;object-fit:cover;border-radius:10px;background:#111}
+.music-info{min-width:0;flex:1}
+.music-title{font-weight:800;font-size:.98rem;line-height:1.25;color:#fff;margin:0 0 4px}
+.music-artist{font-size:.82rem;color:#b8b5bf;margin:0}
+.music-play{width:44px;height:44px;flex:0 0 44px;border:0;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 10px #0004}
+.music-play:focus-visible{outline:3px solid #ff6868;outline-offset:3px}
+.music-player iframe{display:block;width:100%;height:220px;border:0}
+.music-player.is-playing{background:#111}
+@media(max-width:380px){.music-cover{width:86px;flex-basis:86px}.music-card{gap:10px;padding:9px}.music-play{width:40px;height:40px;flex-basis:40px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -33,7 +43,13 @@ footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:
   <h1>Hola, <span>mi amor.</span></h1>
   <p class="lead">Preparé algo especial para ti. Algo que viene directamente de mi corazón y que quiero que descubras poquito a poquito.</p>
   <p class="lead">Hoy no tienes que ganar ninguna carrera ni romper ningún récord. Hoy solo quiero celebrar que existes y que tengo la suerte de compartir esta aventura contigo. ❤️</p>
-  <div class="music-player" aria-label="Reproductor de Spotify para My Universe"><iframe src="https://open.spotify.com/embed/track/3FeVmId7tL5YN8B7R3imoM?utm_source=generator&theme=0" title="My Universe - Coldplay y BTS en Spotify" loading="eager" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <div class="music-player" id="musicPlayer" aria-label="Reproductor compacto de My Universe en YouTube">
+   <div class="music-card" id="musicCard">
+    <img class="music-cover" src="https://img.youtube.com/vi/3YqPKLZF_WU/hqdefault.jpg" alt="Portada del video My Universe de Coldplay y BTS">
+    <div class="music-info"><p class="music-title">My Universe</p><p class="music-artist">Coldplay, BTS</p></div>
+    <button class="music-play" id="playMusic" type="button" aria-label="Reproducir My Universe en YouTube">▶</button>
+   </div>
+  </div>
   <p class="small">Nuestra canción te acompaña desde el comienzo. Pulsa reproducir y sigue recorriendo nuestro universo. ❤️</p>
   <a class="btn" href="#historia">COMENZAR NUESTRA AVENTURA →</a>
   <p class="small" style="margin-top:20px">Una experiencia hecha especialmente para Ricardo, por su persona favorita.</p>
@@ -103,6 +119,12 @@ Te elegiría como compañero de equipo una y otra vez. En esta carrera, mi podio
 </main>
 <footer><div class="heart">♥ ♥ ♥</div><p>Hecho con amor, especialmente para Ricardo.</p><p class="small">Mi universo favorito siempre será el que comparto contigo.</p></footer>
 <script>
+const playMusicButton=document.getElementById('playMusic');
+playMusicButton.addEventListener('click',()=>{
+ const player=document.getElementById('musicPlayer');
+ player.classList.add('is-playing');
+ player.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/3YqPKLZF_WU?autoplay=1&rel=0" title="My Universe - Coldplay y BTS (video oficial)" loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+});
 const target = new Date('2026-11-23T15:00:00-06:00').getTime();
 const letterUnlock = new Date('2026-11-23T07:00:00-06:00').getTime();
 function updateLetterLock(){const locked=Date.now()<letterUnlock;const note=document.getElementById('letterLock');const letter=document.getElementById('birthdayLetter');if(locked){note.style.display='block';letter.hidden=true;}else{note.style.display='none';letter.hidden=false;}}
