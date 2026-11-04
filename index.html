@@ -33,6 +33,21 @@ footer{text-align:center;padding:35px 15px 55px;color:var(--muted)}.heart{color:
 @media(max-width:380px){.music-cover{width:86px;flex-basis:86px}.music-card{gap:10px;padding:9px}.music-play{width:40px;height:40px;flex-basis:40px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;animation:none!important;transition:none!important}}
 </style>
+<script>
+/* Al abrir la página, comenzar siempre desde la bienvenida. */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+window.addEventListener('pageshow', function () {
+  window.scrollTo(0, 0);
+  requestAnimationFrame(function () { window.scrollTo(0, 0); });
+});
+
+window.addEventListener('load', function () {
+  window.scrollTo(0, 0);
+  setTimeout(function () { window.scrollTo(0, 0); }, 80);
+});
+
+</script>
 </head>
 <body>
 <header class="hero" id="inicio">
